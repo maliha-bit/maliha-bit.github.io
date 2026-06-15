@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maliha Rahman — Software Engineer, Educator & NLP Researcher</title>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy-2:#13315c;
+    --teal:#2ec4b6;
+    --cream:#f7f5f0;
+    --ink:#1b1f23;
+    --muted:#5b6b7a;
+    --line:#e3e1da;
+    --card:#ffffff;
+    --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Georgia','Iowan Old Style', serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .mono{font-family:'SFMono-Regular','Consolas','Menlo',monospace;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,245,240,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    font-family:'SFMono-Regular',monospace;
+    font-weight:700; font-size:1.1rem; color:var(--navy);
+    letter-spacing:0.5px;
+  }
+  .logo span{color:var(--teal);}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    color:var(--navy); text-decoration:none; font-size:0.92rem;
+    font-family:'SFMono-Regular',monospace; letter-spacing:0.3px;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0;
+    width:0; height:2px; background:var(--teal);
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    max-width:var(--maxw); margin:0 auto;
+    padding:80px 24px 64px;
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'SFMono-Regular',monospace; font-size:0.8rem;
+    color:var(--teal); letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:14px; display:block;
+  }
+  .hero h1{
+    font-size:3.2rem; font-weight:400; color:var(--navy);
+    line-height:1.1; margin-bottom:20px;
+  }
+  .hero h1 b{font-weight:700;}
+  .hero p{
+    font-size:1.05rem; color:var(--muted); max-width:480px; margin-bottom:28px;
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    font-family:'SFMono-Regular',monospace; font-size:0.85rem;
+    padding:13px 26px; border-radius:2px; text-decoration:none;
+    letter-spacing:0.5px; transition:all 0.2s ease; display:inline-block;
+  }
+  .btn-primary{background:var(--navy); color:var(--cream); border:1px solid var(--navy);}
+  .btn-primary:hover{background:var(--navy-2);}
+  .btn-secondary{background:transparent; color:var(--navy); border:1px solid var(--navy);}
+  .btn-secondary:hover{background:var(--navy); color:var(--cream);}
+
+  /* Hero card - "lesson card" signature element */
+  .lesson-card{
+    background:var(--navy); color:var(--cream);
+    border-radius:6px; padding:24px;
+    font-family:'SFMono-Regular',monospace; font-size:0.82rem;
+    box-shadow:0 20px 50px -20px rgba(11,37,69,0.5);
+    border:1px solid var(--navy-2);
+  }
+  .lesson-card .top-row{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .lesson-card .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--teal);
+    display:inline-block; margin-right:8px;
+    box-shadow:0 0 0 3px rgba(46,196,182,0.18);
+  }
+  .lesson-card .filename{color:var(--teal); font-size:0.78rem;}
+  .lesson-card .stat-row{
+    display:flex; justify-content:space-between; margin:10px 0;
+    padding:8px 0; border-bottom:1px dashed rgba(255,255,255,0.08);
+  }
+  .lesson-card .stat-row:last-child{border-bottom:none;}
+  .lesson-card .stat-label{color:rgba(247,245,240,0.55);}
+  .lesson-card .stat-val{color:var(--cream); font-weight:700;}
+  .lesson-card .stat-val.teal{color:var(--teal);}
+
+  /* ===== SECTION SHELL ===== */
+  section{max-width:var(--maxw); margin:0 auto; padding:64px 24px;}
+  section.alt{background:var(--card); max-width:100%;}
+  section.alt > .inner{max-width:var(--maxw); margin:0 auto; padding:64px 24px;}
+  .sec-head{margin-bottom:40px;}
+  .sec-eyebrow{
+    font-family:'SFMono-Regular',monospace; font-size:0.78rem;
+    color:var(--teal); letter-spacing:2px; text-transform:uppercase;
+    display:block; margin-bottom:8px;
+  }
+  .sec-head h2{
+    font-size:2.1rem; color:var(--navy); font-weight:400;
+  }
+  .sec-head h2 b{font-weight:700;}
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:start;
+  }
+  .avatar{
+    width:200px; height:200px; border-radius:6px;
+    background:linear-gradient(145deg,var(--navy),var(--navy-2));
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal); font-family:'SFMono-Regular',monospace;
+    font-size:3.5rem; font-weight:700;
+    border:1px solid var(--line);
+  }
+  .about-text p{margin-bottom:16px; color:var(--ink);}
+  .about-text p:last-of-type{margin-bottom:24px;}
+  .contact-chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{
+    font-family:'SFMono-Regular',monospace; font-size:0.8rem;
+    border:1px solid var(--line); border-radius:20px;
+    padding:8px 16px; text-decoration:none; color:var(--navy);
+    transition:all 0.2s ease;
+  }
+  .chip:hover{border-color:var(--teal); color:var(--teal); background:rgba(46,196,182,0.06);}
+
+  /* ===== SKILLS ===== */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:28px;
+  }
+  .skill-cat h4{
+    font-family:'SFMono-Regular',monospace; font-size:0.85rem; color:var(--navy);
+    margin-bottom:12px; letter-spacing:0.5px;
+    padding-bottom:8px; border-bottom:2px solid var(--teal);
+  }
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:'SFMono-Regular',monospace; font-size:0.75rem;
+    background:var(--cream); border:1px solid var(--line);
+    padding:5px 12px; border-radius:3px; color:var(--muted);
+  }
+
+  /* ===== TIMELINE (Experience & Education) ===== */
+  .timeline{display:flex; flex-direction:column; gap:0;}
+  .tl-item{
+    display:grid; grid-template-columns:140px 1fr; gap:32px;
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .tl-item:first-child{padding-top:0;}
+  .tl-item:last-child{border-bottom:none;}
+  .tl-date{
+    font-family:'SFMono-Regular',monospace; font-size:0.8rem;
+    color:var(--teal); white-space:nowrap;
+  }
+  .tl-content h3{font-size:1.15rem; color:var(--navy); margin-bottom:2px;}
+  .tl-content .org{
+    font-family:'SFMono-Regular',monospace; font-size:0.82rem;
+    color:var(--muted); margin-bottom:10px; display:block;
+  }
+  .tl-content ul{padding-left:20px; color:var(--ink); font-size:0.95rem;}
+  .tl-content ul li{margin-bottom:4px;}
+
+  /* ===== RESEARCH ===== */
+  .research-card{
+    background:var(--navy); color:var(--cream);
+    border-radius:6px; padding:36px;
+  }
+  .research-card .status{
+    font-family:'SFMono-Regular',monospace; font-size:0.75rem;
+    color:var(--teal); letter-spacing:2px; margin-bottom:14px; display:block;
+  }
+  .research-card h3{font-size:1.5rem; margin-bottom:14px; font-weight:400;}
+  .research-card p{color:rgba(247,245,240,0.78); margin-bottom:20px; max-width:760px;}
+  .research-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;}
+  .research-tags .tag{
+    background:rgba(46,196,182,0.12); border:1px solid rgba(46,196,182,0.35);
+    color:var(--teal);
+  }
+  .research-card .footnote{
+    font-family:'SFMono-Regular',monospace; font-size:0.78rem;
+    color:rgba(247,245,240,0.45); border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:14px; margin-top:8px;
+  }
+
+  /* ===== PROJECTS ===== */
+  .projects-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px;
+  }
+  .project-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:28px; border-top:3px solid var(--navy);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    display:flex; flex-direction:column;
+  }
+  .project-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 36px -20px rgba(11,37,69,0.35);
+    border-top-color:var(--teal);
+  }
+  .project-card h3{font-size:1.15rem; color:var(--navy); margin-bottom:6px;}
+  .project-card .ptags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .project-card p{font-size:0.9rem; color:var(--muted); flex-grow:1;}
+
+  /* ===== CERTS ===== */
+  .certs-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;
+  }
+  .cert-card{
+    background:var(--cream); border:1px solid var(--line); border-radius:4px;
+    padding:18px 20px;
+  }
+  .cert-card .issuer{
+    font-family:'SFMono-Regular',monospace; font-size:0.72rem;
+    color:var(--teal); text-transform:uppercase; letter-spacing:1px;
+    margin-bottom:6px; display:block;
+  }
+  .cert-card h4{font-size:1rem; color:var(--navy); font-weight:700; margin-bottom:4px;}
+  .cert-card .date{font-family:'SFMono-Regular',monospace; font-size:0.78rem; color:var(--muted);}
+
+  /* ===== CONTACT ===== */
+  .contact-wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  }
+  .contact-left h2{font-size:2.1rem; color:var(--navy); font-weight:400; margin-bottom:16px;}
+  .contact-left h2 b{font-weight:700;}
+  .contact-left p{color:var(--muted); margin-bottom:24px; max-width:420px;}
+  .contact-links{display:flex; flex-direction:column; gap:14px;}
+  .contact-links a{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color:var(--navy); font-size:1rem;
+    border-bottom:1px solid var(--line); padding-bottom:10px;
+    transition:color 0.2s ease;
+  }
+  .contact-links a:hover{color:var(--teal);}
+  .contact-links .ico{
+    font-family:'SFMono-Regular',monospace; color:var(--teal);
+    width:24px; text-align:center;
+  }
+  .contact-card{
+    background:var(--navy); border-radius:6px; padding:32px;
+    color:var(--cream); font-family:'SFMono-Regular',monospace; font-size:0.85rem;
+  }
+  .contact-card .line{margin-bottom:10px;}
+  .contact-card .key{color:var(--teal);}
+  .contact-card .val{color:var(--cream);}
+
+  footer{
+    text-align:center; padding:40px 24px;
+    font-family:'SFMono-Regular',monospace; font-size:0.8rem;
+    color:var(--muted); border-top:1px solid var(--line);
+  }
+  footer .teal{color:var(--teal);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; padding-top:48px;}
+    .hero h1{font-size:2.3rem;}
+    .about-grid{grid-template-columns:1fr;}
+    .avatar{width:120px; height:120px; font-size:2.2rem;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .tl-item{grid-template-columns:1fr; gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">M<span>.</span>Rahman</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div>
+    <span class="eyebrow">Software Engineer · Educator · NLP Researcher</span>
+    <h1>Hi, I'm <b>Maliha Rahman</b>.</h1>
+    <p>
+      Final-year Software Engineering student at Daffodil International University
+      (CGPA 3.87/4.00). I build software, teach computer science to students online
+      and through my YouTube channel, and research emotion classification in Bangla text.
+    </p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#research" class="btn btn-secondary">My Research</a>
+    </div>
+  </div>
+
+  <div class="lesson-card">
+    <div class="top-row">
+      <span><span class="dot"></span>maliha.profile.json</span>
+      <span class="filename">live</span>
+    </div>
+    <div class="stat-row"><span class="stat-label">cgpa</span><span class="stat-val teal">3.87 / 4.00</span></div>
+    <div class="stat-row"><span class="stat-label">role</span><span class="stat-val">SWE Student & Tutor</span></div>
+    <div class="stat-row"><span class="stat-label">research</span><span class="stat-val">Bangla NLP</span></div>
+    <div class="stat-row"><span class="stat-label">teaching</span><span class="stat-val">CS · Networking · OOP</span></div>
+    <div class="stat-row"><span class="stat-label">stack</span><span class="stat-val">Java · Python · SQL</span></div>
+    <div class="stat-row"><span class="stat-label">channel</span><span class="stat-val teal">@maliharahman8979</span></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="alt" id="about">
+<div class="inner">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Who I Am</span>
+    <h2>About <b>Me</b></h2>
+  </div>
+  <div class="about-grid">
+    <div class="avatar">MR</div>
+    <div class="about-text">
+      <p>
+        I'm a final-year Software Engineering student at Daffodil International University,
+        currently working toward my B.Sc. with a CGPA of 3.87/4.00. Alongside coursework,
+        I spend a lot of my time teaching — tutoring students one-on-one in programming
+        and networking, and posting CS explainer videos on YouTube for anyone trying
+        to make sense of the same topics I once found confusing.
+      </p>
+      <p>
+        My research looks at multi-label emotion classification in Bangla text — extending
+        existing single-label datasets and benchmarking machine learning approaches for a
+        language that doesn't get nearly enough attention in NLP research. I'm also an
+        executive member of the DIU Data Science Club and the DIU Model United Nations Club.
+      </p>
+      <div class="contact-chips">
+        <a class="chip" href="mailto:rahman2305341229@diu.edu.bd">✉ rahman2305341229@diu.edu.bd</a>
+        <a class="chip" href="tel:+8801810047860">📞 01810047860</a>
+        <a class="chip" href="https://www.linkedin.com/in/maliha-rahman-587333293" target="_blank">in maliha-rahman</a>
+        <a class="chip" href="https://github.com/maliha-bit" target="_blank">⌥ maliha-bit</a>
+        <a class="chip" href="https://youtube.com/@maliharahman8979" target="_blank">▶ @maliharahman8979</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Toolbox</span>
+    <h2>Skills & <b>Tools</b></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <h4>Programming</h4>
+      <div class="skill-tags">
+        <span class="tag">Java</span><span class="tag">Python</span>
+        <span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">C</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Web & Backend</h4>
+      <div class="skill-tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+        <span class="tag">Laravel</span><span class="tag">Google Sites</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Data & AI</h4>
+      <div class="skill-tags">
+        <span class="tag">Python (Data Analysis)</span>
+        <span class="tag">Machine Learning</span><span class="tag">Power BI</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Networking</h4>
+      <div class="skill-tags">
+        <span class="tag">TCP/IP</span><span class="tag">HTTP</span>
+        <span class="tag">FTP</span><span class="tag">DNS</span>
+        <span class="tag">Cisco Packet Tracer</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>AI Tools</h4>
+      <div class="skill-tags">
+        <span class="tag">Claude</span><span class="tag">Claude Code</span>
+        <span class="tag">ChatGPT</span><span class="tag">Gemini</span>
+        <span class="tag">Notebook LM</span><span class="tag">Gamma.app</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Cloud & Other</h4>
+      <div class="skill-tags">
+        <span class="tag">AWS Cloud Security</span><span class="tag">GitHub</span>
+        <span class="tag">OOP</span><span class="tag">System Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESEARCH ===== -->
+<section class="alt" id="research">
+<div class="inner">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Academic Work</span>
+    <h2>Research <b>Focus</b></h2>
+  </div>
+  <div class="research-card">
+    <span class="status">ONGOING · 2026</span>
+    <h3>Multi-Label Emotion Classification in Bangla Text</h3>
+    <p>
+      Extending existing single-label emotion corpora in Bangla into multi-label datasets,
+      then benchmarking a range of machine learning approaches against them. Bangla is a
+      widely-spoken but under-resourced language in NLP — this thesis aims to close part
+      of that gap and provide a foundation for richer emotion-aware applications in Bengali.
+    </p>
+    <div class="research-tags">
+      <span class="tag">NLP</span><span class="tag">Machine Learning</span>
+      <span class="tag">Bangla Language</span><span class="tag">Multi-Label Classification</span>
+      <span class="tag">Corpus Extension</span>
+    </div>
+    <div class="footnote">Undergraduate Thesis · Department of Software Engineering · DIU · 2026</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="sec-head">
+    <span class="sec-eyebrow">What I've Built</span>
+    <h2>Featured <b>Projects</b></h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h3>SkillTrack</h3>
+      <div class="ptags">
+        <span class="tag">System Design</span><span class="tag">UML</span>
+        <span class="tag">DFD</span><span class="tag">ERD</span>
+      </div>
+      <p>
+        AI-driven corporate training companion. Designed full system architecture covering
+        skill assessment, AI-based course recommendations, post-training quizzes, mentor
+        messaging, and a progress dashboard — following OBE principles. Software Analysis
+        & Design capstone, Summer 2025.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Blood Bank Management System</h3>
+      <div class="ptags">
+        <span class="tag">Java</span><span class="tag">OOP</span>
+      </div>
+      <p>
+        Donor-patient matching system with authentication, eligibility validation, and
+        real-time availability tracking. Includes blood-group-based filtering to speed up
+        donor search during emergencies.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Management System</h3>
+      <div class="ptags">
+        <span class="tag">SQL</span><span class="tag">Database Design</span>
+      </div>
+      <p>
+        Relational database system managing patient records, doctor schedules, and overall
+        hospital operations through structured queries and normalized tables.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Company Business System Network</h3>
+      <div class="ptags">
+        <span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">Cisco Packet Tracer</span>
+      </div>
+      <p>
+        Simulated a corporate network topology with static and dynamic routing, DNS
+        configuration, and end-to-end TCP/IP connectivity across departments.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Restaurant Management System</h3>
+      <div class="ptags">
+        <span class="tag">C</span>
+      </div>
+      <p>
+        Command-line application handling order processing, menu management, and billing
+        — built to practice core C programming and data structures.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Ghorar Dim</h3>
+      <div class="ptags">
+        <span class="tag">AI Personalisation</span><span class="tag">Concept</span>
+      </div>
+      <p>
+        An AI-based health food startup concept — a personalisation engine recommends
+        condition-specific meals, paired with a nutritionist-approved delivery app design.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE & EDUCATION ===== -->
+<section class="alt" id="experience">
+<div class="inner">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Work History</span>
+    <h2>Experience & <b>Leadership</b></h2>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">Ongoing</div>
+      <div class="tl-content">
+        <h3>Private Tutor — CS Subjects</h3>
+        <span class="org">Self-Employed · Online & Offline · Dhaka, Bangladesh</span>
+        <ul>
+          <li>Mentor students at multiple levels in programming, networking, and software engineering fundamentals.</li>
+          <li>Build personalised, project-based lesson plans suited to each student's pace.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Ongoing</div>
+      <div class="tl-content">
+        <h3>Educational Content Creator</h3>
+        <span class="org">YouTube · @maliharahman8979</span>
+        <ul>
+          <li>Publish CS explainer videos covering programming, networking, and software concepts for university students.</li>
+          <li>Design structured video lessons aligned with outcome-based learning frameworks.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2024 – Present</div>
+      <div class="tl-content">
+        <h3>Executive Member</h3>
+        <span class="org">DIU Data Science Club · Daffodil International University, Dhaka</span>
+        <ul>
+          <li>Organise peer learning workshops on data science, machine learning, and AI tools.</li>
+          <li>Support AI literacy initiatives within the department.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2024 – Present</div>
+      <div class="tl-content">
+        <h3>Executive Member</h3>
+        <span class="org">DIU Model United Nations Club · Daffodil International University, Dhaka</span>
+        <ul>
+          <li>Develop communication and structured argumentation skills through competitive MUN sessions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Spring 2025</div>
+      <div class="tl-content">
+        <h3>Participant — DIU BreakOut Algorithm Programming Contest</h3>
+        <span class="org">Daffodil International University</span>
+        <ul>
+          <li>Solved algorithmic problems in a university-level competitive programming contest.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Academic Path</span>
+    <h2><b>Education</b></h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2022 – Present</div>
+      <div class="tl-content">
+        <h3>Daffodil International University</h3>
+        <span class="org">B.Sc. in Software Engineering · 4th Year · Dhaka, Bangladesh</span>
+        <ul><li>CGPA: 3.87 / 4.00</li></ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2019 – 2021</div>
+      <div class="tl-content">
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <span class="org">Science</span>
+        <ul><li>GPA: 5.00 / 5.00</li></ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2011 – 2019</div>
+      <div class="tl-content">
+        <h3>Secondary School Certificate (SSC)</h3>
+        <span class="org">Science</span>
+        <ul><li>GPA: 5.00 / 5.00</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section class="alt" id="certifications">
+<div class="inner">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Credentials</span>
+    <h2><b>Certifications</b></h2>
+  </div>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <span class="issuer">AWS Academy</span>
+      <h4>Cloud Security Foundations</h4>
+      <span class="date">April 2026 · 20 Hours</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">Simplilearn SkillUp</span>
+      <h4>Getting Started with Machine Learning Algorithms</h4>
+      <span class="date">April 2026</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">ScholarHat</span>
+      <h4>Software Architecture & System Design Foundations</h4>
+      <span class="date">April 2026</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">CodeSignal</span>
+      <h4>Web Development with HTML, CSS & JavaScript</h4>
+      <span class="date">April 2026</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">CodeSignal</span>
+      <h4>PHP Laravel Basics</h4>
+      <span class="date">April 2026</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">GoEdu.AC</span>
+      <h4>ChatGPT Basics, Usage and Prospects <i>(With Distinction)</i></h4>
+      <span class="date">October 2025</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">freeCodeCamp</span>
+      <h4>Data Analysis with Python <i>(300 Hours)</i></h4>
+      <span class="date">October 2023</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">Coursera Project Network</span>
+      <h4>Introduction to Google Docs</h4>
+      <span class="date">July 2025</span>
+    </div>
+
+    <div class="cert-card">
+      <span class="issuer">Ostad</span>
+      <h4>SQA Career Launchpad for Absolute Beginners</h4>
+      <span class="date">&nbsp;</span>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <span class="sec-eyebrow">Get In Touch</span>
+      <h2>Let's <b>Connect</b></h2>
+      <p>
+        Whether it's about teaching, software engineering, NLP research, or the
+        TAF Program — I'm happy to talk. Drop me a message any time.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:rahman2305341229@diu.edu.bd"><span class="ico">✉</span> rahman2305341229@diu.edu.bd</a>
+        <a href="tel:+8801810047860"><span class="ico">📞</span> 01810047860</a>
+        <a href="https://www.linkedin.com/in/maliha-rahman-587333293" target="_blank"><span class="ico">in</span> linkedin.com/in/maliha-rahman</a>
+        <a href="https://github.com/maliha-bit" target="_blank"><span class="ico">⌥</span> github.com/maliha-bit</a>
+        <a href="https://youtube.com/@maliharahman8979" target="_blank"><span class="ico">▶</span> youtube.com/@maliharahman8979</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="line"><span class="key">name</span>: <span class="val">"Maliha Rahman"</span></div>
+      <div class="line"><span class="key">role</span>: <span class="val">"Software Engineer & Educator"</span></div>
+      <div class="line"><span class="key">location</span>: <span class="val">"Dhaka, Bangladesh"</span></div>
+      <div class="line"><span class="key">university</span>: <span class="val">"DIU"</span></div>
+      <div class="line"><span class="key">cgpa</span>: <span class="val">3.87</span></div>
+      <div class="line"><span class="key">status</span>: <span class="val">"open to TAF 2026"</span></div>
+      <div class="line"><span class="key">available</span>: <span class="val">true</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Maliha Rahman <span class="teal">·</span> Built with care at DIU
+</footer>
+
+</body>
+</html>
